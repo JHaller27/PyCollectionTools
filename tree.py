@@ -5,6 +5,10 @@ ELBOW_INDENT = '└──'
 ARRAY_INDEX =  '─┐'
 
 
+def is_flat(data):
+    return isinstance(data, list) or isinstance(data, set)
+
+
 def data_struct_as_tree(data, indent='') -> str:
     out_str = ''
 
@@ -23,8 +27,9 @@ def data_struct_as_tree(data, indent='') -> str:
             out_str += f'\n{indent}{item_indent} {key}'
             out_str += data_struct_as_tree(data[key], indent + next_indent_append)
 
-    elif isinstance(data, list) and len(data) > 0:
+    elif is_flat(data) and len(data) > 0:
         for idx in range(len(data)):
+            data = list(data)
             child = data[idx]
 
             if idx < (len(data) - 1):
@@ -34,7 +39,7 @@ def data_struct_as_tree(data, indent='') -> str:
                 next_indent_append =  EMPTY_INDENT
                 item_indent = ELBOW_INDENT
 
-            if isinstance(child, dict) or isinstance(child, list):
+            if isinstance(child, dict) or is_flat(child):
                 out_str += f'\n{indent}{item_indent}{ARRAY_INDEX}'
                 out_str += data_struct_as_tree(data[idx], indent + next_indent_append)
             else:
