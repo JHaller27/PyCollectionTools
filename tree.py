@@ -6,7 +6,7 @@ ARRAY_INDEX =  '─┐'
 
 
 def is_flat(data):
-    return isinstance(data, list) or isinstance(data, set)
+    return isinstance(data, list) or isinstance(data, set) or isinstance(data, tuple)
 
 
 def data_struct_as_tree(data, indent='') -> str:
@@ -21,7 +21,7 @@ def data_struct_as_tree(data, indent='') -> str:
                 next_indent_append = PIPED_INDENT
                 item_indent = SPLIT_INDENT
             else:
-                next_indent_append =  EMPTY_INDENT
+                next_indent_append = EMPTY_INDENT
                 item_indent = ELBOW_INDENT
 
             out_str += f'\n{indent}{item_indent} {key}'
