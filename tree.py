@@ -1,8 +1,8 @@
 EMPTY_INDENT = '    '
 PIPED_INDENT = '|   '
-SPLIT_INDENT = '├─'
-ELBOW_INDENT = '└─'
-ARRAY_INDEX =  '──┐'
+SPLIT_INDENT = '├──'
+ELBOW_INDENT = '└──'
+ARRAY_INDEX =  '─┐'
 
 
 def data_struct_as_tree(data, indent='') -> str:
